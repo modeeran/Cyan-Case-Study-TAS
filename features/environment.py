@@ -10,5 +10,5 @@ def before_scenario(context,driver):
 
 def after_scenario(context,driver):
     tag_list = context.tags
-    if 'login2' in tag_list or 'status' in tag_list:
+    if 'login' in tag_list or 'status' in tag_list:
         context.driver.quit()
