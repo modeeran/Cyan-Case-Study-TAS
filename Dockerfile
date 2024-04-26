@@ -1,10 +1,10 @@
 # pull official base image
 FROM --platform=linux/amd64 python:3.11.5 as build-stage
 
-RUN apt-get update -y && apt-get install -y wget unzip xserver-xorg-video-dummy
+RUN apt-get update -y && apt-get install -y wget unzip
 
 # RUN apt-get install -y wget xvfb unzip
-# Set up the Chrome PPA -> (not sure if needed)
+# Set up the Chrome PPA
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
@@ -29,7 +29,7 @@ RUN unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
 ENV PATH $CHROMEDRIVER_DIR:$PATH
 
 # set working directory
-WORKDIR /app
+WORKDIR /app_test
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
