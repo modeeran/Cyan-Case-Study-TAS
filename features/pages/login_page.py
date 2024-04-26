@@ -6,13 +6,15 @@ class LoginPage:
     def __init__(self,driver):
         self.driver = driver
 
-    login_option_link_text = "Form Authentication"
+    login_link_text = "Form Authentication"
     username_element_id = "username"
     password_element_id = "password"
     login_button_element = "#login button.radius"
+    login_success_message_element = "#flash-messages .success"
+    login_warning_message_element = "#flash-messages .error"
 
     def navigate_login_page(self):
-        element = self.driver.find_element(By.LINK_TEXT, self.login_option_link_text)
+        element = self.driver.find_element(By.LINK_TEXT, self.login_link_text)
         element.click()
 
     def set_username(self, username):
@@ -31,7 +33,12 @@ class LoginPage:
             element = self.driver.find_element(By.CSS_SELECTOR, self.login_button_element)
             element.click()
 
-    def display_status_of_warning_message(self,expected_warning_text):
-       pass
+    def check_success_message(self,expected_success_msg_text):
+        element = self.driver.find_element(By.CSS_SELECTOR, self.login_success_message_element)
+        assert element, "The success message element could not be found."
+        return self.driver.page_source.__contains__(expected_success_msg_text)
 
-
+    def check_warning_message(self,expected_warning_text):
+        element = self.driver.find_element(By.CSS_SELECTOR, self.login_warning_message_element)
+        assert element, "The warning message element could not be found."
+        return self.driver.page_source.__contains__(expected_warning_text)

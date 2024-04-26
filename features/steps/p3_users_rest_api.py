@@ -7,7 +7,7 @@ def step_impl(context, endpoint):
     context.endpoint = endpoint
 
 
-@when(u'There is a GET request to the users endpoint')
+@when(u'We request to the users endpoint and get a response')
 def step_impl(context):
     context.response = requests.get(context.endpoint)
     context.json_data = context.response.json()
@@ -15,9 +15,6 @@ def step_impl(context):
 
 @then(u'Verify that user as "{user}" exists')
 def step_impl(context, user):
-    """
-    It returns a list of matching items for the given key and value. The list can be empty or non-empty.
-    """
     context.filter_data = list(filter(lambda json_data: json_data['name'] == user, context.json_data))
     if context.filter_data:
         if len(context.filter_data) == 1:

@@ -1,9 +1,9 @@
+@api
 Feature: Users REST API
 
-  @api
   Scenario: Verify the existence of a user
     Given The API "https://jsonplaceholder.typicode.com/users" returns a response of users details
-    When There is a GET request to the users endpoint
+    When We request to the users endpoint and get a response
     Then Verify that user as "Nicholas Runolfsdottir V" exists
     And verify that if this user exists, his address contains the following data
         |  street           |  suite     | city      | zipcode | lat      | lng      |

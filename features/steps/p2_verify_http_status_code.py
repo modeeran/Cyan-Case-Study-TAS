@@ -15,4 +15,4 @@ def step_impl(context, link):
 
 @then(u'the correct http statusCode as "{statuscode:n}" should be returned per sub-page')
 def step_impl(context, statuscode):
-    assert context.driver.status_codes_page.collect_http_status_code(statuscode)
+    assert context.driver.status_codes_page.collect_http_status_code(statuscode), "The status code does not match"
