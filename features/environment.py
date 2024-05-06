@@ -7,7 +7,7 @@ def before_scenario(context,driver):
 
         executor = os.getenv("SELENIUM_EXECUTOR", "")
 
-        if executor == "container":
+        if executor == "hub":
             options = webdriver.ChromeOptions()
             context.driver = webdriver.Remote(command_executor="http://localhost:4444", options=options)
 
